@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Juno | short & modern website</title>
+    <!-- A clean, modern, short website. Fully responsive, no external dependencies, but uses a smooth Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f9fafc 0%, #eff2f8 100%);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            color: #1b2a3f;
+            line-height: 1.4;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        /* main glass-card container */
+        .site-card {
+            max-width: 1120px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.86);
+            backdrop-filter: blur(2px);
+            border-radius: 3rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0,0,0,0.02);
+            overflow: hidden;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        /* inner content with breathing space */
+        .website-inner {
+            padding: 2.5rem 2.2rem 2.8rem 2.2rem;
+        }
+
+        /* header section: short hero */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+            border-bottom: 2px solid #e9edf4;
+            padding-bottom: 2rem;
+        }
+
+        .intro h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #1e2f41, #2c4b6e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            margin-bottom: 0.35rem;
+        }
+
+        .intro .tagline {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #3a5b7a;
+            border-left: 3px solid #6096b4;
+            padding-left: 0.85rem;
+            margin-top: 0.3rem;
+        }
+
+        .avatar {
+            background: linear-gradient(125deg, #d9e3ec, #cbd7e4);
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 500;
+            box-shadow: 0 12px 18px -10px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+            color: #1f3b4c;
+        }
+
+        /* stat grid: short but impactful */
+        .stats-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+            background: #ffffffcc;
+            border-radius: 2rem;
+            padding: 1.2rem 1.8rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .stat-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: #1e4a6e;
+            letter-spacing: -0.01em;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #577a99;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* two column layout: about & quick links */
+        .split-grid {
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            gap: 2rem;
+            margin-bottom: 2.6rem;
+        }
+
+        .card-panel {
+            background: rgba(255,255,255,0.7);
+            border-radius: 1.8rem;
+            padding: 1.5rem 1.6rem;
+            transition: all 0.2s;
+            box-shadow: 0 6px 12px -10px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255,255,255,0.7);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #1f405e;
+        }
+
+        .section-title i {
+            font-weight: 400;
+            font-size: 1.4rem;
+        }
+
+        .about-text p {
+            margin-bottom: 0.9rem;
+            font-size: 1rem;
+            color: #2c4359;
+            line-height: 1.5;
+        }
+
+        .skill-badge {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.8rem;
+        }
+
+        .badge {
+            background: #eef2f9;
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #2c5a7a;
+            border: 1px solid #cbdbe0;
+        }
+
+        .link-list {
+            list-style: none;
+        }
+
+        .link-list li {
+            margin-bottom: 1rem;
+        }
+
+        .link-list a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            background: #ffffffd9;
+            padding: 0.7rem 1rem;
+            border-radius: 80px;
+            transition: all 0.2s;
+            color: #1e405e;
+            border: 1px solid #dce5ef;
+        }
+
+        .link-list a:hover {
+            background: #ffffff;
+            transform: translateX(6px);
+            border-color: #a9c0d4;
+            box-shadow: 0 6px 12px -8px rgba(0,0,0,0.1);
+            color: #0b2f48;
+        }
+
+        .link-icon {
+            font-size: 1.3rem;
+        }
+
+        /* quote or short footer */
+        .quote-footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            padding-top: 1rem;
+            border-top: 1px solid #dce3ec;
+            color: #53718b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .quote {
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: -0.2px;
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            font-weight: 400;
+        }
+
+        /* interactive micro-update (small JS demo) */
+        .connect-btn {
+            background: none;
+            border: none;
+            font-family: inherit;
+            background: #1f4b6e;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 5px;
+        }
+
+        .connect-btn:hover {
+            background: #0b3857;
+            transform: scale(0.97);
+        }
+
+        .msg-toast {
+            font-size: 0.7rem;
+            margin-left: 0.6rem;
+            color: #2c6b4f;
+            font-weight: 500;
+        }
+
+        /* responsive */
+        @media (max-width: 750px) {
+            .website-inner {
+                padding: 1.6rem;
+            }
+            .split-grid {
+                grid-template-columns: 1fr;
+                gap: 1.4rem;
+            }
+            .hero {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .intro h1 {
+                font-size: 2rem;
+            }
+            .stats-row {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            .stat-item {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .website-inner {
+                padding: 1.2rem;
+            }
+        }
+
+        button {
+            background: none;
+            border: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="site-card">
+        <div class="website-inner">
+            <!-- SHORT HERO SECTION -->
+            <div class="hero">
+                <div class="intro">
+                    <h1>Juno M.</h1>
+                    <div class="tagline">✦ design · code · iterate ✦</div>
+                    <div style="margin-top: 0.8rem; display: flex; gap: 8px; align-items: center;">
+                        <span style="font-size: 0.9rem; background: #e9eff6; padding: 0.2rem 0.8rem; border-radius: 40px;">📍 remote / sf</span>
+                        <button class="connect-btn" id="waveBtn">👋 wave hello</button>
+                        <span id="greetingMessage" class="msg-toast"></span>
+                    </div>
+                </div>
+                <div class="avatar">
+                    🌙
+                </div>
+            </div>
+
+            <!-- STATISTICS / SHORT METRICS (impressive but concise) -->
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-number">4+</div>
+                    <div class="stat-label">years XP</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">32</div>
+                    <div class="stat-label">projects</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">curiosity</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">🌍</div>
+                    <div class="stat-label">global mindset</div>
+                </div>
+            </div>
+
+            <!-- MAIN CONTENT: about + quick links -->
+            <div class="split-grid">
+                <div class="card-panel">
+                    <div class="section-title">
+                        <span>📖</span> short bio
+                    </div>
+                    <div class="about-text">
+                        <p>Hey! I'm Juno — a creative problem solver blending minimal design and functional code. I craft digital experiences that feel light, fast, and human. Currently exploring interactive storytelling and AI-assisted tools.</p>
+                        <p>When I'm not behind a screen, you'll find me hiking, brewing filter coffee, or sketching random UI concepts. ✨</p>
+                    </div>
+                    <div class="skill-badge">
+                        <span class="badge">React</span>
+                        <span class="badge">Vue</span>
+                        <span class="badge">Tailwind</span>
+                        <span class="badge">Figma</span>
+                        <span class="badge">Node.js</span>
+                    </div>
+                </div>
+                
+                <div class="card-panel">
+                    <div class="section-title">
+                        <span>🔗</span> quick links
+                    </div>
+                    <ul class="link-list">
+                        <li><a href="#" id="projectLink"><span class="link-icon">📁</span> recent work → curated projects</a></li>
+                        <li><a href="#" id="githubMock"><span class="link-icon">🐙</span> github / experiments</a></li>
+                        <li><a href="#" id="contactLink"><span class="link-icon">📬</span> say hello → hello@junospace.dev</a></li>
+                        <li><a href="#" id="resumeMock"><span class="link-icon">📄</span> résumé (short version)</a></li>
+                    </ul>
+                    <!-- tiny interactive demonstration: email copy -->
+                    <div style="margin-top: 0.8rem; font-size: 0.75rem; background: #eef3fc; border-radius: 80px; padding: 0.5rem 0.8rem; display: inline-block; width: 100%; text-align: center;">
+                        💡 <strong>click any link</strong> → greeting & demo alert (prototype mode)
+                    </div>
+                </div>
+            </div>
+            
+            <!-- quote + footer with nice microinteraction -->
+            <div class="quote-footer">
+                <div class="quote">“less, but better — design that resonates.”</div>
+                <div class="copyright">© 2026 Juno — short & sweet website</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // simple interactive touches: short website with friendly alerts & small dynamic greeting
+        (function() {
+            // elements 
+            const waveBtn = document.getElementById('waveBtn');
+            const greetingSpan = document.getElementById('greetingMessage');
+            const projectLink = document.getElementById('projectLink');
+            const githubMock = document.getElementById('githubMock');
+            const contactLink = document.getElementById('contactLink');
+            const resumeMock = document.getElementById('resumeMock');
+
+            // utility: show temporary message near greeting 
+            function showTempMessage(msg, isError = false) {
+                if (!greetingSpan) return;
+                greetingSpan.textContent = msg;
+                greetingSpan.style.color = isError ? '#b1624b' : '#2c6b4f';
+                setTimeout(() => {
+                    if (greetingSpan) greetingSpan.textContent = '';
+                }, 2200);
+            }
+
+            // Wave hello action 
+            if (waveBtn) {
+                waveBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showTempMessage('👋 Hey there! thanks for stopping by 💫');
+                    // optional small console no-op 
+                });
+            }
+
+            // generic alert function but with modern inline style (no aggressive alert, but demo)
+            // Using a non-intrusive notification + optionally small extra alert for demo? For better UX, we'll use 
+            // subtle snackbar style? Because website is short, but we also avoid annoying alerts. 
+            // But we want to show that the links are interactive demonstration: I'll combine a smooth inline message
+            // and also maybe a small console log. But since many users expect feedback: we'll show a tiny floating-like?
+            // Use the greetingSpan & a temporary status. Also for clarity we can do a small modal? not needed.
+            // I'll use a friendly popup but instead it's just tooltip style message.
+            
+            function handleDemoAction(linkName, urlPlaceholder) {
+                // Display info: this is a static prototype website.
+                showTempMessage(`✨ ${linkName} — (demo mode) short website complete ✨`);
+                // bonus: log
+                console.log(`[juno short site] clicked: ${linkName} -> ${urlPlaceholder || '#'}`);
+                // Some optional easter egg: none intrusive 
+                return false;
+            }
+
+            // attach to each link with prevention and show message
+            if (projectLink) {
+                projectLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleDemoAction('Projects gallery', '/projects');
+                });
+            }
+            if (githubMock) {
+                githubMock.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleDemoAction('GitHub playground', 'https://github.com/juno-creative');
+                });
+            }
+            if (contactLink) {
+                contactLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleDemoAction('Email contact', 'mailto:hello@junospace.dev');
+                    // optional copy fake?
+                    showTempMessage('📧 hello@junospace.dev - feel free to reach out!', false);
+                });
+            }
+            if (resumeMock) {
+                resumeMock.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleDemoAction('Resume preview', '/resume');
+                });
+            }
+
+            // Additional micro-detail: add a dynamic year or time-based greeting on page load? 
+            // Not necessary, but slight personal touch: show a welcoming message after 0.7 seconds
+            setTimeout(() => {
+                if (greetingSpan) {
+                    greetingSpan.textContent = '✨ site is live ✨';
+                    greetingSpan.style.opacity = '1';
+                    setTimeout(() => {
+                        if (greetingSpan && greetingSpan.textContent === '✨ site is live ✨') 
+                            greetingSpan.textContent = '';
+                    }, 1800);
+                }
+            }, 300);
+
+            // nice dynamic hover effect on stats? not needed, but optional extra: console greeting
+            console.log('short website · fresh & minimal · interactive demo ready');
+            
+            // Bonus accent: draggable? no. but we provide a nice quote update on double click on footer?
+            const quoteElem = document.querySelector('.quote');
+            if (quoteElem) {
+                let clickCount = 0;
+                quoteElem.addEventListener('dblclick', () => {
+                    const quotesList = [
+                        "“less, but better — design that resonates.”",
+                        "“simplicity is the ultimate sophistication.”",
+                        "“build with intention, ship with joy.”",
+                        "“craft → iterate → repeat.”"
+                    ];
+                    let currentQuote = quoteElem.innerText;
+                    let nextQuote = quotesList[(quotesList.indexOf(currentQuote) + 1) % quotesList.length];
+                    if (!quotesList.includes(currentQuote)) nextQuote = quotesList[0];
+                    quoteElem.innerText = nextQuote;
+                    showTempMessage('💫 quote refreshed!', false);
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
